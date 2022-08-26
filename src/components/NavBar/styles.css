@@ -1,0 +1,38 @@
+* {
+    margin:0;
+    border:0;
+}
+.menu__principal{
+    background-color: #6EAE45;    
+    font-family: 'Lato', sans-serif;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;         
+    width: 100%;
+}
+
+.menu__ul{
+    list-style-type: none;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.menu__li{
+    text-align:center;
+    display:inline-block;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.menu__li--a{
+    text-decoration: none;
+    color: white;    
+}
+
+.menu__li--a:hover{
+    color:black;
+}
