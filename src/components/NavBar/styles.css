@@ -36,3 +36,16 @@
 .menu__li--a:hover{
     color:black;
 }
+
+#cesta-carrito {
+    border: none;    
+    font-size: 10px;
+    background-color: #6EAE45;    
+    color: white;
+    padding: 10px 20px;
+    transition: all .3s;
+  }
+  
+  #cesta-carrito:focus {
+    outline: none;
+  }
