@@ -6,7 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
 // Import toastify css file
 import 'react-toastify/dist/ReactToastify.css'; 
-  
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+
 function App() {
   return (
     <div className="App">
@@ -14,9 +17,11 @@ function App() {
         <NavBar/> 
       </header>      
       <ToastContainer></ToastContainer>
-      <ItemListContainer 
-        greeting = {"Bienvenido a la Tienda en Línea"}
-      />
+      <Container className="fluid my-5">
+        <ItemListContainer 
+          greeting = {"Bienvenido a la Tienda en Línea"}
+        />
+      </Container>
     </div>
   );
 }
