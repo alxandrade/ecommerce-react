@@ -1,0 +1,8 @@
+[
+    {"id":1, "tamanoMaceta": "Chica", "tipoMaceta": "Barro", "modelo":"CH001", "precioMaceta":380, "rutaImg":"/images/ch001.png"},
+    {"id":2, "tamanoMaceta": "Chica", "tipoMaceta": "Cerámica", "modelo":"CH002", "precioMaceta":450, "rutaImg":"/images/ch002.png"},
+    {"id":3, "tamanoMaceta": "Mediana", "tipoMaceta": "Barro", "modelo":"M001", "precioMaceta":250, "rutaImg":"/images/m001.png"},    
+    {"id":4, "tamanoMaceta": "Mediana", "tipoMaceta": "Fibra Vidrio", "modelo":"M002", "precioMaceta":650, "rutaImg":"/images/m002.jpg"},
+    {"id":5, "tamanoMaceta": "Grande", "tipoMaceta": "Barro", "modelo":"G001", "precioMaceta":350, "rutaImg":"/images/g001.jpg"},    
+    {"id":6, "tamanoMaceta": "Grande", "tipoMaceta": "Fibra Vidrio", "modelo":"G002", "precioMaceta":750, "rutaImg":"/images/g002.jpg"}
+]
