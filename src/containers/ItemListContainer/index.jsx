@@ -4,20 +4,34 @@ import './styles.css';
 import Swal from "sweetalert2";
 import { useState, useEffect } from 'react';
 import ItemList from '../../components/ItemList';
+import { useParams } from 'react-router-dom';
 const API = 'data/products.json';
 
 const ItemListContainer = () => {
   
   const [productos, setProductos] = useState([]);
+  const {tipoMacetaId} = useParams();
 
+  
   useEffect(() => {
     (async () => {
-      
+      console.log("tipoMaceta");
+      console.log(tipoMacetaId);
+    
       try {
-        const response = await fetch(API);
-        const productos = await response.json();
-        
-        setProductos(productos);        
+        if (tipoMacetaId) {
+          const response = await fetch(API);
+          const data = await response.json();
+          const productos = data.filter((elemento) => elemento.tipoMaceta === tipoMacetaId);                              
+          
+          setProductos(productos);        
+        }
+        else {
+          const response = await fetch(API);
+          const productos = await response.json();
+
+          setProductos(productos);
+        }
       } 
       catch (error) {
         console.log(error);        
@@ -25,7 +39,7 @@ const ItemListContainer = () => {
 
     })()
 
-  }, []);
+  }, [tipoMacetaId]);
   console.log(productos);
   
   const agregarAlCarrito = (cantidad) => {        
@@ -40,9 +54,9 @@ const ItemListContainer = () => {
     <>                    
       <ItemList products={productos}/>          
       
-      <div>
+      {/* <div>
         <ItemCount initial={1} stock={5} onAdd={agregarAlCarrito} />
-      </div>
+      </div> */}
     </>
   )
 }

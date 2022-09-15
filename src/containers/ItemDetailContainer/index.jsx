@@ -1,29 +1,32 @@
 import React, { useEffect, useState }from "react";
 import ItemDetail from "../../components/ItemDetail";
+import { useParams } from "react-router-dom";
 const API = 'data/products.json';
 
 const ItemDetailContainer = () => {
     
     const [productDetail, setProductDetail] = useState([]);
+    const {productId} = useParams();
 
+    
     useEffect( () => {
         const getProducts = async () => {
-            try{
+            console.log("productId");
+            console.log(productId);
+            try{                
                 const response = await fetch(API);
                 const data = await response.json();
-                const resultado = data.filter((elemento) => elemento.modelo === "CH002");                              
+                const producto = data.filter((elemento) => elemento.id == productId);                                
 
-                setProductDetail(resultado);
+                setProductDetail(producto);                
             } 
             catch (error) {
                 console.log(error);
             }
         }
         getProducts();
-    }, []);
-    
-    console.log("productDetail");
-    console.log(productDetail);
+    }, [productId]);
+        
     return (
         <>
             {productDetail.map((producto, indx) => {
