@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './styles.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
+import Button from 'react-bootstrap/Button';
 
 const ItemCount = ({stock, initial, onAdd}) => {
     
@@ -13,7 +14,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
             setCount(count + 1);
             toast('Producto Agregado', {
                 position: "top-right",
-                autoClose: 2000,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -29,11 +30,11 @@ const ItemCount = ({stock, initial, onAdd}) => {
     }
 
     const handleLess = () => {
-        if((count <= stock) && (count > 0)) {
+        if(count > initial) {
             setCount(count-1);
             toast('Producto Eliminado', {
                 position: "top-right",
-                autoClose: 2000,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -53,22 +54,14 @@ const ItemCount = ({stock, initial, onAdd}) => {
         setCount(initial);
     }
 
-    //Ciclo de vida del hook
-    useEffect(()=>{
-        // El array esta vacio [] implica que el callback se ejecuta cuando se monta por UNICA VEZ
-        console.log("Se monto el ItemCount")
-    }, []);
-
-    useEffect(()=>{
-        // La funcion callBack dentro del useEffect se ejecutara cuando se MONTE y cuando se Actualice el estado del count
-    }, [count]);
-
     return (
-        <div>            
-            <h2>{count}</h2>
-            <button onClick={handleAdd}>+</button>            
-            <button onClick={addCar}>Agregar al Carrito</button>
-            <button onClick={handleLess}>-</button>
+        <div className='counter-container'>            
+            <h2 className='counter'>{count}</h2>
+            <div className='button-container'>
+                <button className='button' onClick={handleLess}>-</button>
+                <button className='button' onClick={handleAdd}>+</button>                            
+            </div>
+            <Button variant="success" onClick={addCar}>Agregar al Carrito</Button>            
         </div>
     )
 }

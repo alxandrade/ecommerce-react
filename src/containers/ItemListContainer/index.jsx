@@ -1,28 +1,24 @@
 import React from 'react';
-import ItemCount from '../../components/ItemCount';
 import './styles.css';
-import Swal from "sweetalert2";
 import { useState, useEffect } from 'react';
 import ItemList from '../../components/ItemList';
 import { useParams } from 'react-router-dom';
-const API = 'data/products.json';
+const API = '../data/products.json';
 
 const ItemListContainer = () => {
   
   const [productos, setProductos] = useState([]);
   const {tipoMacetaId} = useParams();
 
-  
   useEffect(() => {
     (async () => {
-      console.log("tipoMaceta");
-      console.log(tipoMacetaId);
-    
+          
       try {
-        if (tipoMacetaId) {
+        if (tipoMacetaId) {          
           const response = await fetch(API);
+          console.log(response);
           const data = await response.json();
-          const productos = data.filter((elemento) => elemento.tipoMaceta === tipoMacetaId);                              
+          const productos = data.filter(item => item.tipoMaceta === tipoMacetaId);                              
           
           setProductos(productos);        
         }
@@ -33,30 +29,18 @@ const ItemListContainer = () => {
           setProductos(productos);
         }
       } 
-      catch (error) {
+      catch (error) {        
         console.log(error);        
       }
-
     })()
-
   }, [tipoMacetaId]);
-  console.log(productos);
-  
-  const agregarAlCarrito = (cantidad) => {        
-    Swal.fire({
-      title: `Se agregaron ${cantidad}  productos al Carrito`,      
-    })
-  };
 
-  console.log(productos);
 
   return (    
-    <>                    
-      <ItemList products={productos}/>          
-      
-      {/* <div>
-        <ItemCount initial={1} stock={5} onAdd={agregarAlCarrito} />
-      </div> */}
+    <>          
+      {
+        productos.length ? <ItemList products={productos} /> : <h1>Cargando...</h1>
+      }          
     </>
   )
 }

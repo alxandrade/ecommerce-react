@@ -11,19 +11,18 @@ const Item = ({product}) => {
   const handleNavigate = () => {
     console.log("Item product.id")
     console.log(product.id)
-    navigate(`/${product.id}`);
+    navigate(`/detalles/${product.id}`);
   }
 
   return (
     <Col>    
-    <Card border="primary" style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={product.rutaImg} className="img_secundarias" onClick={handleNavigate}/>
+    <Card border="primary" className='card-container' style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={product.rutaImg} className="card-img" onClick={handleNavigate} alt={`Imagen del producto ${product.modelo}`}/>
       <Card.Body>
         <Card.Title>{product.modelo}</Card.Title>
-        <Card.Text>{product.tipoMaceta}</Card.Text>
-        <Card.Text>{product.tamanoMaceta}</Card.Text>
-        <Card.Text>${product.precioMaceta}</Card.Text>        
-        <Button variant="success" onClick={handleNavigate}>Más Información</Button>
+        <Card.Text>{product.tipoMaceta} - {product.tamanoMaceta}</Card.Text>        
+        <Card.Text>${product.precioMaceta} pesos</Card.Text>        
+        <Button variant="success" onClick={handleNavigate}>Más Información</Button>        
       </Card.Body>
     </Card>        
     </Col>

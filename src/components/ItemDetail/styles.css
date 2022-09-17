@@ -1,4 +1,26 @@
 .img-detail {
-    width: 400px;
-    height: 400px;
+    width: 90%;
+    height: 90%;
+}
+
+.card-main{
+    display: flex;
+    width: 100%;
+}
+
+.card-detail {
+    display: flex;
+    width: 100%;
+}
+
+.card-detail-left {
+    width: 50%;
+}
+
+.card-detail-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    
+    flex-direction: column;
 }
