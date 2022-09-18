@@ -3,14 +3,14 @@ import './styles.css';
 import ItemCount from '../ItemCount'
 // import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { Shop } from "../../context/ShopProvider";
+import { CartContext } from "../../context/CartContext";
 import Button from 'react-bootstrap/Button';
 
 const ItemDetail = ({product}) => {
 
     const [qty, setQty] = useState(0);
     const navigate = useNavigate();
-    const {addToCart} = useContext(Shop);
+    const {addItem} = useContext(CartContext);
 
     const agregarAlCarrito = (cantidad) => {        
         setQty(cantidad);
@@ -22,7 +22,7 @@ const ItemDetail = ({product}) => {
 
     const finalizarCarrito = () => {
         const productToSave = {...product, cantidad: qty}
-        addToCart(productToSave)
+        addItem(productToSave)
         navigate('/cart');
     };
 

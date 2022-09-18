@@ -15,26 +15,27 @@ import Container from 'react-bootstrap/Container';
 
 import { BrowserRouter, Routes,Route} from "react-router-dom";
 import NotFound from './components/NotFound';
-import ShopProvider from './context/ShopProvider';
-import Cart from './containers/CartContainer';
+import CartContainer from './containers/CartContainer';
+import CartProvider from './context/CartContext';
 
 function App() {
   return (
-    <ShopProvider>
+      
+    <CartProvider>
       <BrowserRouter>       
         <NavBar/>
         <ToastContainer></ToastContainer>
         <Container className="fluid my-5"> 
           <Routes>         
-              <Route path='/' element={<ItemListContainer/>} /> 
+              <Route path='/' element={<ItemListContainer/>} />
               <Route path='/categoria/:tipoMacetaId' element={<ItemListContainer/>} />
               <Route path='/detalles/:productId' element={<ItemDetailContainer/>} />
-              <Route path='/cart' element={<Cart/>} />              
+              <Route path='/cart' element={<CartContainer />} />
               <Route path='*' element={<NotFound/>}/>
           </Routes>        
         </Container>
       </BrowserRouter>
-    </ShopProvider>
+    </CartProvider>    
   );
 }
 
