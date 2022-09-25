@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import './styles.css';
 import ItemCount from '../ItemCount'
-// import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import Button from 'react-bootstrap/Button';
+
 
 const ItemDetail = ({product}) => {
 
@@ -13,21 +13,14 @@ const ItemDetail = ({product}) => {
     const {addItem} = useContext(CartContext);
 
     const agregarAlCarrito = (cantidad) => {        
-        setQty(cantidad);
-        console.log(cantidad);        
-        // Swal.fire({
-        //   title: `Se agregaron ${cantidad}  productos al Carrito`,      
-        // })
+        setQty(cantidad);                
     };
 
     const finalizarCarrito = () => {
-        const productToSave = {...product, cantidad: qty}
-        addItem(productToSave)
+        const productToSave = {...product, cantidad: qty};
+        addItem(productToSave);        
         navigate('/cart');
     };
-
-    console.log("Aqui la cantidad");
-    console.log(qty);
     
     return (  
         <article className='card-main'>
@@ -46,7 +39,7 @@ const ItemDetail = ({product}) => {
                     { qty ? (
                         <Button variant="success" onClick={finalizarCarrito}>Finalizar Compra</Button>                        
                     ) : (
-                        <ItemCount initial={1} stock={product.stock} onAdd={agregarAlCarrito} />
+                        <ItemCount initial={1} stock={product.stock} onAdd={agregarAlCarrito} product={product} />
                     )}
                 </div>
             </div>

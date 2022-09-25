@@ -1,7 +1,10 @@
 import React, { useEffect, useState }from "react";
 import ItemDetail from "../../components/ItemDetail";
 import { useParams } from "react-router-dom";
-const API = '../data/products.json';
+import { db } from "../../firebase/config";
+import { doc, getDoc } from "firebase/firestore";
+
+// const API = '../data/products.json';
 
 const ItemDetailContainer = () => {
     
@@ -9,12 +12,14 @@ const ItemDetailContainer = () => {
     const {productId} = useParams();
     
     useEffect( () => {
-        const getProducts = async () => {            
+        const getProducts = async () => { 
+            const producto = [];            
             try{                
-                const response = await fetch(API);
-                const data = await response.json();
-                const producto = data.filter((elemento) => elemento.id == productId);                
+                const docRef = doc(db, "products", productId);
+                const docSnap = await getDoc(docRef);                
+                console.log("Document data:", docSnap.data());
 
+                producto.push({id:docSnap.id, ...docSnap.data()});
                 setProductDetail(producto);                
             } 
             catch (error) {

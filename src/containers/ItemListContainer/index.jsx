@@ -3,7 +3,9 @@ import './styles.css';
 import { useState, useEffect } from 'react';
 import ItemList from '../../components/ItemList';
 import { useParams } from 'react-router-dom';
-const API = '../data/products.json';
+import { db } from "../../firebase/config";
+import { collection, query, where, getDocs } from "firebase/firestore";
+// const API = '../data/products.json';
 
 const ItemListContainer = () => {
   
@@ -11,26 +13,22 @@ const ItemListContainer = () => {
   const {tipoMacetaId} = useParams();
 
   useEffect(() => {
-    (async () => {
-          
-      try {
-        if (tipoMacetaId) {          
-          const response = await fetch(API);
-          console.log(response);
-          const data = await response.json();
-          const productos = data.filter(item => item.tipoMaceta === tipoMacetaId);                              
-          
-          setProductos(productos);        
-        }
-        else {
-          const response = await fetch(API);
-          const productos = await response.json();
-
-          setProductos(productos);
-        }
-      } 
-      catch (error) {        
-        console.log(error);        
+    (async () => {          
+      try {       
+        
+        const q = tipoMacetaId
+        ? query(collection(db, "products"), where("tipoMaceta", "==", tipoMacetaId))
+        : query(collection(db, "products"));
+        
+        const querySnapshot = await getDocs(q);
+        const productos = [];
+        
+        querySnapshot.forEach((doc) => {
+          productos.push({id:doc.id, ...doc.data()});
+        });
+        setProductos(productos);       
+      } catch (error) {        
+          console.log(error);        
       }
     })()
   }, [tipoMacetaId]);

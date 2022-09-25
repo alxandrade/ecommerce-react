@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { CartContext } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import './styles.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import Button from 'react-bootstrap/Button';
+import NavBar from '../NavBar';
 
-const ItemCount = ({stock, initial, onAdd}) => {
+const ItemCount = ({stock, initial, onAdd, product}) => {
     
     const [count, setCount] = useState(initial);
+    const {addItem} = useContext(CartContext);
+    const navigate = useNavigate();
     
     const handleAdd = () => {
         if (count < stock) {
@@ -52,7 +57,15 @@ const ItemCount = ({stock, initial, onAdd}) => {
     const addCar = () => {
         onAdd(count);
         setCount(initial);
+        finalizarCarrito();
     }
+
+    const finalizarCarrito = () => {
+        const productToSave = {...product, cantidad: count};
+        addItem(productToSave);
+        <NavBar/>
+        navigate('/cart');
+    };
 
     return (
         <div className='counter-container'>            
