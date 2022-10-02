@@ -5,7 +5,6 @@ import ItemList from '../../components/ItemList';
 import { useParams } from 'react-router-dom';
 import { db } from "../../firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
-// const API = '../data/products.json';
 
 const ItemListContainer = () => {
   

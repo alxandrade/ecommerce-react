@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { db } from "../../firebase/config";
 import { doc, getDoc } from "firebase/firestore";
 
-// const API = '../data/products.json';
-
 const ItemDetailContainer = () => {
     
     const [productDetail, setProductDetail] = useState([]);
