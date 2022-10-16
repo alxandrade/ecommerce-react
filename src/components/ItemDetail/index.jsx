@@ -23,8 +23,7 @@ const ItemDetail = ({product}) => {
     };
     
     return (  
-        <article className='card-main'>
-            
+        <article className='card-main'>            
             <div className="card-detail">
                 <div className="card-detail-left">
                     <img src={product.rutaImg} className="img-detail" alt="product-detail"/>

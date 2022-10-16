@@ -5,12 +5,12 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/esm/Col';
 import {useNavigate} from 'react-router-dom'
 
+  
+
 const Item = ({product}) => {
   const navigate = useNavigate();
 
-  const handleNavigate = () => {
-    console.log("Item product.id")
-    console.log(product.id)
+  const handleNavigate = () => {    
     navigate(`/detalles/${product.id}`);
   }
 

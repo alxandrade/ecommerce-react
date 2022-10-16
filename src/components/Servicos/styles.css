@@ -1,0 +1,8 @@
+.img_secundarias:hover {
+    filter: grayscale(80%); 
+}
+
+h3 {
+    color: orange;
+    font-size: 25px; 
+}

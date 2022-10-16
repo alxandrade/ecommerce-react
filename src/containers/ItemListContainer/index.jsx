@@ -13,8 +13,7 @@ const ItemListContainer = () => {
 
   useEffect(() => {
     (async () => {          
-      try {       
-        
+      try {               
         const q = tipoMacetaId
         ? query(collection(db, "products"), where("tipoMaceta", "==", tipoMacetaId))
         : query(collection(db, "products"));
@@ -36,7 +35,7 @@ const ItemListContainer = () => {
   return (    
     <>          
       {
-        productos.length ? <ItemList products={productos} /> : <h1>Cargando...</h1>
+        productos.length ? <ItemList products={productos} /> : <h1>Cargando...</h1> 
       }          
     </>
   )
